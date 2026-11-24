@@ -42,7 +42,31 @@ def build_summary():
 
     return summary
 
+def write_csv(summary, path="summary.csv"):
+    if not summary:
+        return
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=list(summary[0].keys()))
+        writer.writeheader()
+        writer.writerows(summary)
+
+def fmt(delta):
+    if delta is None:
+        return "-"
+    return f"{delta:+d}"
+
+    
+def print_summary(summary):
+    if not summary:
+        print("no data yet")
+        return
+
+    print(f"{'repo':<25} {'stars':>8} {'Δ stars':>8}")
+    for item in summary:
+        print(f"{item['repo']:<25} {item['stars']:>8} {fmt(item['stars_delta']):>8}")
+
 
 if __name__ == "__main__":
-    for item in build_summary():
-        print(item)
+    summary = build_summary()
+    print_summary(summary)
+    write_csv(summary)
