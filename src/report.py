@@ -24,6 +24,25 @@ def get_last_two(repo):
 
     return rows
 
-if __name__ == "__main__":
+def build_summary():
+    summary = []
     for r in get_repos():
-        print(r, get_last_two(r))
+        rows = get_last_two(r)
+        current = rows[0]
+        previous = rows[1] if len(rows) == 2 else None
+        summary.append({
+            "repo": r,
+            "stars": current[0],
+            "forks": current[1],
+            "open_issues": current[2],
+            "stars_delta": current[0] - previous[0] if previous else None,
+            "forks_delta": current[1] - previous[1] if previous else None,
+            "open_issues_delta": current[2] - previous[2] if previous else None,
+        })
+
+    return summary
+
+
+if __name__ == "__main__":
+    for item in build_summary():
+        print(item)
