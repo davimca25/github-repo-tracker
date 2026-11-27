@@ -1,4 +1,4 @@
 repo,stars,forks,open_issues,stars_delta,forks_delta,open_issues_delta
-pallets/flask,75293,17306,4,19,9,0
-pandas-dev/pandas,50652,20724,1811,17,4,6
-psf/requests,54771,10887,258,11,0,1
+pallets/flask,75283,17307,4,-10,1,0
+pandas-dev/pandas,50636,20726,1815,-16,2,4
+psf/requests,54779,10913,258,8,26,0
